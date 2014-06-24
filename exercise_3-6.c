@@ -13,7 +13,7 @@ void reverse(char s[]);
 /* the assignment */
 void itoa(int n, char s[], int w);
 
-main() {
+int main() {
   int input[] = {0, 1, -1, INT_MAX, INT_MIN,
 				 0, 1, -1, INT_MAX, INT_MIN};
   int width[] = {0, 0, 0, 0, 0,
@@ -22,7 +22,6 @@ main() {
 						 "  0", "  1", " -1", "2147483647", "-2147483648"};
 
   char actual[16];
-  char bad[16];
   int i;
   for (i=0; i<10; i++) {
 	itoa(input[i], actual, width[i]);
@@ -69,10 +68,14 @@ void itoa(int n, char s[], int w) {
 
   } else {
 
-	/* postive number - no probs, just do it like the book */
+	/* postive number */
 	do {
 	  s[i++] = n % 10 + '0';
 	} while ((n/=10) > 0);
+  }
+
+  while (i<w) {
+	s[i++] = ' ';
   }
 
   s[i] = '\0';
